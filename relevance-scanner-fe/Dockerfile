@@ -4,6 +4,9 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm cache clean --force
 RUN npm install --no-cache
+RUN npm install @angular/cli@latest
+RUN npm update
+
 COPY . .
 RUN npm run build --no-cache
 
