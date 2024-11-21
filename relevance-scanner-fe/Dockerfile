@@ -2,6 +2,8 @@
 FROM node:18 AS build
 WORKDIR /app
 COPY package*.json ./
+RUN ng update
+RUN npm cache clean --force
 RUN npm install --no-cache
 COPY . .
 RUN npm run build --no-cache
