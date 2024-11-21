@@ -14,5 +14,4 @@ COPY public /app/public
 COPY src /app/src
 
 COPY --from=build /app/dist ./dist
-#CMD ["node", "dist/relevance-scanner-fe/server/server.mjs"]
-CMD ["npm", "start"]
+CMD ["node", "dist/relevance-scanner-fe/server/server.mjs"]
