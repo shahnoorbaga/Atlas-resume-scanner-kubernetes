@@ -1,17 +1,14 @@
 # Build the application
-FROM node:18 AS build
+FROM node:18
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
-COPY . .
-RUN npm run build
+RUN npm install @rollup/plugin-dynamic-import-vars --save-dev
 
-# Run the application
-FROM node:18
-WORKDIR /app
+COPY . .
+
 # Copy application files
 COPY public /app/public
 COPY src /app/src
 
-COPY --from=build /app/dist ./dist
-CMD ["node", "dist/relevance-scanner-fe/server/server.mjs"]
+CMD ["npm", "run", "serve:ssr:relevance-scanner-fe"]
