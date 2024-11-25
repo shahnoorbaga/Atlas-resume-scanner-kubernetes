@@ -10,5 +10,5 @@ COPY . .
 # Copy application files
 COPY public /app/public
 COPY src /app/src
-
+ENV PORT 4000
 CMD ["npm", "run", "serve:ssr:relevance-scanner-fe"]
