@@ -122,7 +122,7 @@ export class ResumeUploadComponent {
             this.fileContent = await this.extractTextFromDocx(arrayBuffer);
             const formData = new FormData();
             formData.append('resume', this.fileContent);
-            this.http.post('http://localhost:3000/api/getPrediction', formData, { responseType: 'text' })
+            this.http.post('https://relevance-backend-api-338628837206.us-central1.run.app/api/getPrediction', formData, { responseType: 'text' })
     .subscribe(
       response => {
         try {
