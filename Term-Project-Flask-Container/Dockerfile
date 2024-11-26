@@ -12,7 +12,7 @@ RUN wget https://storage.googleapis.com/atlas-training-model/LLMmodel.h5
 
 ENV CUDA_VISIBLE_DEVICES=""
 
-EXPOSE 3000
-ENV PORT 3000
+EXPOSE 8080
+ENV PORT 8080
 
 CMD ["python", "app.py"]
