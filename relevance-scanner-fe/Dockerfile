@@ -1,13 +1,23 @@
-# Build the application
-FROM node:18
-WORKDIR /app
+# Use the official Node.js image as the base image
+FROM node:alpine
+
+# Set the working directory
+WORKDIR /src/app
+
+# Copy the package.json and package-lock.json files
 COPY package*.json ./
+
+# Install the dependencies
 RUN npm install
-RUN npm install @rollup/plugin-dynamic-import-vars --save-dev
+
+# Copy the rest of the application code
 COPY . .
-#RUN npm run build
-# Copy application files
-COPY public /app/public
-COPY src /app/src
-ENV PORT 4000
-CMD ["npm", "run", "serve:ssr:relevance-scanner-fe"]
+
+# Install Angular CLI globally
+RUN npm install -g @angular/cli
+
+# Expose the port the app runs on
+EXPOSE 4200
+
+# Start the Angular application
+CMD ["ng", "serve", "--host", "0.0.0.0"]
