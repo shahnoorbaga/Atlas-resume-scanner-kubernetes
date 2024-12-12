@@ -48,7 +48,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: shahnoor786/resumescannerfrontend-kubernetes:latest
+        image: agnelo990/fe:latest
         imagePullPolicy: Always
         #image: frontend:ica
         env:
