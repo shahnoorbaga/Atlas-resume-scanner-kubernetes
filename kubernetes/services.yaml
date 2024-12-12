@@ -4,7 +4,8 @@ metadata:
   name: web-app-backend
   namespace: backend
 spec:
-  type: ClusterIP
+  type: LoadBalancer
+  loadBalancerIP: 34.148.104.110
   selector:
     app: web-app-backend
   ports:
