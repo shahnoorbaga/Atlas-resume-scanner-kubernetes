@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-app-backend
+  name: backend
   namespace: backend
 spec:
   type: ClusterIP
