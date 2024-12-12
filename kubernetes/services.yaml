@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-app-backend
+  namespace: backend
+spec:
+  type: ClusterIP
+  selector:
+    app: web-app-backend
+  ports:
+    - port: 5000
+      targetPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-app-frontend
+  namespace: frontend
+spec:
+  type: LoadBalancer
+  selector:
+    app: web-app-frontend
+  ports:
+    - port: 80
+      targetPort: 80

@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-backend
+  namespace: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app-backend
+  template:
+    metadata:
+      labels:
+        app: web-app-backend
+    spec:
+      containers:
+      - name: backend
+        image: gcr.io/shahnoor/web-app-backend:latest
+        imagePullPolicy: Always
+        #image: backend:ica
+        env:
+          - name: SQL_SERVER_HOST
+            value: "34.72.194.121"
+          - name: SQL_SERVER_DB
+            value: "shahnoorappdb"
+          - name: SQL_SERVER_USER
+            value: "sqlserver"
+          - name: SQL_SERVER_PASSWORD
+            value: "admin"
+        ports:
+        - containerPort: 5000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-frontend
+  namespace: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app-frontend
+  template:
+    metadata:
+      labels:
+        app: web-app-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: gcr.io/shahnoor/web-app-frontend:latest
+        imagePullPolicy: Always
+        #image: frontend:ica
+        env:
+          - name: BACKEND_URL
+            value: "http://web-app-backend.backend.svc.cluster.local:5000"  # Set backend URL as an environment variable
+        ports:
+        - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-app-test
+  namespace: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-app
+  template:
+    metadata:
+      labels:
+        app: test-app
+    spec:
+      containers:
+      - name: test
+        image: gcr.io/shahnoor/test-app-test:latest
+        imagePullPolicy: Always
+        #image: testimage:ica
