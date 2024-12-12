@@ -48,7 +48,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: agnelo990/fe:latest
+        image: agnelo990/fe:v1
         imagePullPolicy: Always
         #image: frontend:ica
         env:
