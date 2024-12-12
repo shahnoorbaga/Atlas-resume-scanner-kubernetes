@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: shahnoor786/resumescannerbackend-kubernetes:latest
+        image: shahnoor786/resumescannerbackend:latest
         imagePullPolicy: Always
         #image: backend:ica
 #        env:
@@ -48,14 +48,14 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: shahnoor786/resumescannerfrontend:latest
+        image: shahnoor786/resumescannerfrontend-kubernetes:latest
         imagePullPolicy: Always
         #image: frontend:ica
         env:
           - name: BACKEND_URL
             value: "http://34.148.104.110:5000"  # Set backend URL as an environment variable
         ports:
-        - containerPort: 80
+        - containerPort: 8080
 ---
 #apiVersion: apps/v1
 #kind: Deployment
