@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-app-backend
+  namespace: backend
+spec:
+  type: {{ .Values.backend.service.type }}
+  loadBalancerIP: {{ .Values.backend.loadBalancerIP | default "" }}
+  selector:
+    app: web-app-backend
+  ports:
+    - port: {{ .Values.backend.service.port }}
+      targetPort: 5000

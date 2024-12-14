@@ -1,0 +1,30 @@
+# Backend configuration
+backend:
+  image:
+    repository: shahnoor786/resumescannerbackend
+    tag: latest
+    pullPolicy: Always
+  replicas: 1
+  service:
+    type: LoadBalancer
+    port: 5000
+  loadBalancerIP: "34.148.104.110"
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "2Gi"
+      cpu: "1"
+
+# Frontend configuration
+frontend:
+  image:
+    repository: agnelo990/fe
+    tag: v1
+    pullPolicy: Always
+  replicas: 1
+  service:
+    type: LoadBalancer
+    port: 8080
+  backendURL: "http://34.148.104.110:5000"
